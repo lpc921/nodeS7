@@ -1041,7 +1041,7 @@ Reason: We could have some packets waiting for timeout from the PLC, and others 
 NodeS7.prototype.sendWritePacket = function() {
 	var self = this, i, dataBuffer, itemBuffer, dataBufferPointer, flagReconnect;
 
-	dataBuffer = Buffer.alloc(8192);
+	dataBuffer = Buffer.alloc(65536);
 
 	self.writeInQueue = false;
 
@@ -2743,13 +2743,13 @@ function S7Item() { // Object
 	this.writeTransportCode = undefined;
 
 	// This is where the data can go that arrives in the packet, before calculating the value.
-	this.byteBuffer = Buffer.alloc(8192);
-	this.writeBuffer = Buffer.alloc(8192);
+	this.byteBuffer = Buffer.alloc(65536);
+	this.writeBuffer = Buffer.alloc(65536);
 
 	// We use the "quality buffer" to keep track of whether or not the requests were successful.
 	// Otherwise, it is too easy to lose track of arrays that may only be partially complete.
-	this.qualityBuffer = Buffer.alloc(8192);
-	this.writeQualityBuffer = Buffer.alloc(8192);
+	this.qualityBuffer = Buffer.alloc(65536);
+	this.writeQualityBuffer = Buffer.alloc(65536);
 
 	// Then we have item properties
 	this.value = undefined;
